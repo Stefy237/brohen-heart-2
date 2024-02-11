@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regles</title>
+
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <div class="rules">
+            <p>
+                Le but du jeu est de briser le maximun de coeur possible.
+                Il existe deux type de coeur :
+            </p>
+                <ul>
+                    <li>Les coeurs rouges qui vous donne droit à un point chaque fois que vous les brisez</li>
+                    <li>Les coeurs dorés qui vous donnent droit à une vie de plus</li>
+                </ul>
+            <p>
+                Vous perdez une vie chaque fois qu'un coeur tombe en bas de l'écran avant que vous ne l'ayez briser et vous perdez lorque soit vous n'avez plus de vie soit un coeur vous touche avant que vous ne le brisiez.
+                Vous commencer l'aventure avec 4 vies.
+            </p>
+            <strong>
+                Bonne chance !
+            </strong>
+        </div>
+        
+        <button onclick="goToGame()">OK</button>
+    </main>
+
+    <script>
+        function goToGame() {
+            window.location.href = "main.html";
+        }
+    </script>
+</body>
+</html>
