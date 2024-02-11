@@ -8,7 +8,8 @@ body {
     background: #f6f5f7;
 }
 
-.main-index, .main-lost {
+.main-index,
+#main-lost {
     width: 50%;
     margin: auto;
     margin-top: 50px;
@@ -18,9 +19,10 @@ body {
     border-radius: 13px;
     padding: 10px;
 }
- .login {
+
+.login {
     margin: 30px;
- }
+}
 
 .rules {
     border: 1px solid black;
@@ -45,7 +47,8 @@ label {
     width: 100px;
 }
 
-button, .button {
+button,
+.button {
     width: 120px;
     height: 35px;
     display: inline-block;
@@ -110,6 +113,12 @@ p {
     transition: transform 0.5s;
 }
 
+#player-img {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+}
+
 .red-heart {
     background-image: url('./images/red-heart.png');
     background-size: cover;
@@ -128,7 +137,18 @@ p {
 
 @media (max-width: 600px) {
     .heart {
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .main-index,
+    #main-lost,
+    .rules {
+        width: 80%;
+    }
+
+    #player-img {
+        width: 80px;
+        height: 80px;
     }
 }

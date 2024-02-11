@@ -41,9 +41,7 @@ function createHeart() {
     }
 
     if (lives === 0) {
-      clearInterval(createHeart);
-      // export const finalScore = score;
-      window.location.href = "lost-page.html";
+      endGame();
     }
   }, dropTime);
 
@@ -97,6 +95,70 @@ function createHeart() {
     }
   }, 3000); // Supprime le cœur après 3 secondes
   */
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const playerImg = document.getElementById("player-img");
+
+  document.addEventListener("click", function (event) {
+    const x = event.offsetX;
+    const y = event.offsetY;
+
+    movePlayer(x, y);
+  });
+
+  // Fonction pour déplacer le joueur
+  function movePlayer(x, y) {
+    playerImg.style.transition = "left 0.3s, top 0.3s";
+    playerImg.style.left = x + "px";
+    playerImg.style.top = y + "px";
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const playerImg = document.getElementById("player-img");
+  const hearts = document.getElementsByClassName("heart");
+
+  // Gestion des événements de clic pour les appareils tactiles
+  document.addEventListener("touchstart", function (event) {
+    const x = event.touches[0].clientX;
+    const y = event.touches[0].clientY;
+
+    movePlayer(x, y);
+  });
+
+  // Fonction pour déplacer le joueur
+  function movePlayer(x, y) {
+    playerImg.style.transition = "left 0.3s, top 0.3s";
+    playerImg.style.left = x + "px";
+    playerImg.style.top = y + "px";
+  }
+
+  function checkCollision() {
+    const playerRect = playerImg.getBoundingClientRect();
+
+    for (let i = 0; i < hearts.length; i++) {
+      const heartRect = hearts[i].getBoundingClientRect();
+
+      if (
+        playerRect.left + 10 + "px" < heartRect.right &&
+        playerRect.right - 10 + "px" > heartRect.left &&
+        playerRect.top + 10 + "px" < heartRect.bottom &&
+        playerRect.bottom - 10 + "px" > heartRect.top
+      ) {
+        endGame();
+        break;
+      }
+    }
+  }
+
+  setInterval(checkCollision, 10);
+});
+
+function endGame() {
+  clearInterval(createHeart);
+  // export const finalScore = score;
+  window.location.href = "lost-page.html";
 }
 
 if (score <= 10) {
