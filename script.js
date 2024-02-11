@@ -1,6 +1,6 @@
 var score = 0;
 var lives = 4;
-var dropTime = 20;
+var drop = 1;
 var click = 0;
 
 /*
@@ -33,7 +33,7 @@ function createHeart() {
     var gameAreaHeight = gameArea.offsetHeight;
 
     if (heartPosition < gameAreaHeight) {
-      heart.style.top = heartPosition + 1 + "px";
+      heart.style.top = heartPosition + drop + "px";
     } else {
       clearInterval(heartInterval);
       lives--;
@@ -45,7 +45,7 @@ function createHeart() {
     if (lives === 0) {
       endGame();
     }
-  }, dropTime);
+  }, 20);
 
   heart.addEventListener("click", () => {
     heart.classList.add("heart-exit");
@@ -176,20 +176,20 @@ function endGame() {
   window.location.href = "lost-page.html";
 }
 
-setInterval(createHeart, 1500);
+intervalId = setInterval(createHeart, 2000);
 
 function updateDifficulty() {
   if (score > 10 && score <= 20) {
-    clearInterval(createHeart);
-    setInterval(createHeart, 1500);
-    dropTime = 25;
+    clearInterval(intervalId);
+    intervalId = setInterval(createHeart, 1500);
+    drop = 2;
   } else if (score > 20 && score <= 40) {
-    clearInterval(createHeart);
-    setInterval(createHeart, 1500);
-    dropTime = 30;
+    clearInterval(intervalId);
+    intervalId = setInterval(createHeart, 1500);
+    drop = 4;
   } else if (score > 60) {
-    clearInterval(createHeart);
-    setInterval(createHeart, 2000);
-    dropTime = 40;
+    clearInterval(intervalId);
+    intervalId = setInterval(createHeart, 2000);
+    drop = 8;
   }
 }
