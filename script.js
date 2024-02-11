@@ -1,6 +1,8 @@
 var score = 0;
 var lives = 4;
 var dropTime = 20;
+var click = 0;
+
 /*
 var username;
 var pseudo;
@@ -48,17 +50,21 @@ function createHeart() {
   heart.addEventListener("click", () => {
     heart.classList.add("heart-exit");
 
-    setTimeout(() => {
-      gameArea.removeChild(heart);
-    }, 1000);
-
     if (heart.classList.contains("red-heart")) {
       score++;
-      heart.style.backgroundImage = "url('./images/broken-red-heart.png')";
+      heart.classList.remove("red-heart");
+      heart.classList.add("broken-red-heart");
+      updateDifficulty();
     } else if (heart.classList.contains("golden-heart")) {
       lives++;
-      heart.style.backgroundImage = "url('./images/broken-gold-heart.png')";
+      heart.classList.remove("golden-heart");
+      heart.classList.add("broken-gold-heart");
     }
+
+    setTimeout(() => {
+      gameArea.removeChild(heart);
+      click = 1;
+    }, 1000);
 
     document.getElementById("score").textContent = "Score: " + score;
     document.getElementById("lives").textContent = "Vies: " + lives;
@@ -71,14 +77,22 @@ function createHeart() {
 
     if (heart.classList.contains("red-heart")) {
       score++;
-      heart.style.backgroundImage = "url('./images/broken-red-heart.png')";
+      heart.classList.remove("red-heart");
+      heart.classList.add("broken-red-heart");
+      updateDifficulty();
     } else if (heart.classList.contains("golden-heart")) {
       lives++;
-      heart.style.backgroundImage = "url('./images/broken-gold-heart.png')";
+      heart.classList.remove("golden-heart");
+      heart.classList.add("broken-gold-heart");
     }
 
     document.getElementById("score").textContent = "Score: " + score;
     document.getElementById("lives").textContent = "Vies: " + lives;
+
+    setTimeout(() => {
+      gameArea.removeChild(heart);
+      click = 1;
+    }, 1000);
   });
 
   heart.addEventListener("touchend", () => {
@@ -141,10 +155,11 @@ document.addEventListener("DOMContentLoaded", function () {
       const heartRect = hearts[i].getBoundingClientRect();
 
       if (
-        playerRect.left + 10 + "px" < heartRect.right &&
-        playerRect.right - 10 + "px" > heartRect.left &&
-        playerRect.top + 10 + "px" < heartRect.bottom &&
-        playerRect.bottom - 10 + "px" > heartRect.top
+        playerRect.left - 10 < heartRect.right &&
+        playerRect.right + 10 > heartRect.left &&
+        playerRect.top - 10 < heartRect.bottom &&
+        playerRect.bottom + 10 > heartRect.top &&
+        b === 0
       ) {
         endGame();
         break;
@@ -161,18 +176,20 @@ function endGame() {
   window.location.href = "lost-page.html";
 }
 
-if (score <= 10) {
-  setInterval(createHeart, 1500);
-} else if (score > 10 && score <= 20) {
-  clearInterval(createHeart);
-  setInterval(createHeart, 1000);
-  dropTime = 10;
-} else if (score > 20 && score <= 40) {
-  clearInterval(createHeart);
-  setInterval(createHeart, 1000);
-  dropTime = 7;
-} else if (score > 60) {
-  clearInterval(createHeart);
-  setInterval(createHeart, 500);
-  dropTime = 5;
+setInterval(createHeart, 1500);
+
+function updateDifficulty() {
+  if (score > 10 && score <= 20) {
+    clearInterval(createHeart);
+    setInterval(createHeart, 1000);
+    dropTime = 10;
+  } else if (score > 20 && score <= 40) {
+    clearInterval(createHeart);
+    setInterval(createHeart, 1000);
+    dropTime = 7;
+  } else if (score > 60) {
+    clearInterval(createHeart);
+    setInterval(createHeart, 500);
+    dropTime = 5;
+  }
 }

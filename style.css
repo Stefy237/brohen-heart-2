@@ -124,8 +124,18 @@ p {
     background-size: cover;
 }
 
+.broken-red-heart {
+    background-image: url('./images/broken-red-heart.png');
+    background-size: cover;
+}
+
 .golden-heart {
     background-image: url('./images/golden-heart.png');
+    background-size: cover;
+}
+
+.broken-golden-heart {
+    background-image: url('./images/broken-gold-heart.png');
     background-size: cover;
 }
 
