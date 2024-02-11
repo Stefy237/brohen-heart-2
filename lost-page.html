@@ -21,6 +21,8 @@
         <strong>Felicitation</strong>
 
         <p>Aidez vos amis célibataires qui s'ennuient en partageant le lien du jeu <a href="break-heart2.onrender.com">share</a></p>
+
+        <button onclick="goToGame()">Rejouer</button>
     </main>
     <footer>
         <p> Fait avec <img src="./images/red-heart.png" alt="coeur" width="20" height="20"> par Stefy </p>
@@ -33,6 +35,10 @@
     var p = document.createElement('p');
     p.textContent = 'Vous terminé avec le score : ' + window.finalScore;
     main.insertBefore(p, main.lastChild);
+
+            function goToGame() {
+                window.location.href = "main.html";
+            }
 </script>
 </body>
 

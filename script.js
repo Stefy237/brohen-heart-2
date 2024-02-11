@@ -176,7 +176,7 @@ function endGame() {
   window.location.href = "lost-page.html";
 }
 
-intervalId = setInterval(createHeart, 2000);
+intervalId = setInterval(createHeart, 1500);
 
 function updateDifficulty() {
   if (score > 10 && score <= 20) {
@@ -185,11 +185,11 @@ function updateDifficulty() {
     drop = 2;
   } else if (score > 20 && score <= 40) {
     clearInterval(intervalId);
-    intervalId = setInterval(createHeart, 1500);
+    intervalId = setInterval(createHeart, 1000);
     drop = 4;
   } else if (score > 60) {
     clearInterval(intervalId);
-    intervalId = setInterval(createHeart, 2000);
+    intervalId = setInterval(createHeart, 1000);
     drop = 8;
   }
 }
