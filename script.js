@@ -181,15 +181,15 @@ setInterval(createHeart, 1500);
 function updateDifficulty() {
   if (score > 10 && score <= 20) {
     clearInterval(createHeart);
-    setInterval(createHeart, 1000);
-    dropTime = 10;
+    setInterval(createHeart, 1500);
+    dropTime = 25;
   } else if (score > 20 && score <= 40) {
     clearInterval(createHeart);
-    setInterval(createHeart, 1000);
-    dropTime = 7;
+    setInterval(createHeart, 1500);
+    dropTime = 30;
   } else if (score > 60) {
     clearInterval(createHeart);
-    setInterval(createHeart, 500);
-    dropTime = 5;
+    setInterval(createHeart, 2000);
+    dropTime = 40;
   }
 }
